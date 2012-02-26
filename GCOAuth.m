@@ -278,8 +278,27 @@ static BOOL GCOAuthUseHTTPSCookieStorage = YES;
     return request;
     
 }
+
 + (NSURLRequest *)URLRequestForPath:(NSString *)path
                      POSTParameters:(NSDictionary *)parameters
+                               host:(NSString *)host
+                        consumerKey:(NSString *)consumerKey
+                     consumerSecret:(NSString *)consumerSecret
+                        accessToken:(NSString *)accessToken
+                        tokenSecret:(NSString *)tokenSecret {
+    return [self URLRequestForPath:path
+                    POSTParameters:parameters
+                            scheme:@"http"
+                              host:host
+                       consumerKey:consumerKey
+                    consumerSecret:consumerSecret
+                       accessToken:accessToken
+                       tokenSecret:tokenSecret];
+}
+
++ (NSURLRequest *)URLRequestForPath:(NSString *)path
+                     POSTParameters:(NSDictionary *)parameters
+                             scheme:(NSString *)scheme
                                host:(NSString *)host
                         consumerKey:(NSString *)consumerKey
                      consumerSecret:(NSString *)consumerSecret
@@ -296,7 +315,7 @@ static BOOL GCOAuthUseHTTPSCookieStorage = YES;
                                               tokenSecret:tokenSecret];
     oauth.HTTPMethod = @"POST";
     oauth.requestParameters = parameters;
-    NSURL *URL = [[NSURL alloc] initWithScheme:@"https" host:host path:path];
+    NSURL *URL = [[NSURL alloc] initWithScheme:scheme host:host path:path];
     oauth.URL = URL;
     [URL release];
     

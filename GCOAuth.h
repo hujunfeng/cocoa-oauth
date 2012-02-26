@@ -96,6 +96,19 @@
                      consumerSecret:(NSString *)consumerSecret
                         accessToken:(NSString *)accessToken
                         tokenSecret:(NSString *)tokenSecret;
+
+/*
+ Performs the same operation as the above method but allows a customizable URL
+ scheme, e.g. HTTPS.
+ */
++ (NSURLRequest *)URLRequestForPath:(NSString *)path
+                     POSTParameters:(NSDictionary *)parameters
+                             scheme:(NSString *)scheme
+                               host:(NSString *)host
+                        consumerKey:(NSString *)consumerKey
+                     consumerSecret:(NSString *)consumerSecret
+                        accessToken:(NSString *)accessToken
+                        tokenSecret:(NSString *)tokenSecret;
 @end
 
 /*
